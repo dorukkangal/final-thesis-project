@@ -1,0 +1,21 @@
+<module>
+    <inherits name="org.vaadin.jouni.animator.AnimatorWidgetset" />
+
+    <inherits name="org.vaadin.rpc.WidgetRPC" />
+
+    <inherits name="com.vaadin.terminal.gwt.DefaultWidgetSet" />
+
+    <inherits name="org.vaadin.peter.contextmenu.ContextmenuWidgetset" />
+
+    <inherits name="fi.jasoft.dragdroplayouts.DragDropLayoutsWidgetSet" />
+
+    <inherits name="org.vaadin.youtubeplayer.YouTubePlayerWidgetset" />
+
+    <inherits name="org.vaadin.swfobject.SwfobjectWidgetset" />
+
+    <inherits name="com.invient.vaadin.charts.widgetset.InvientChartsWidgetset" />
+
+    <inherits name="com.vaadin.addon.calendar.gwt.CalendarWidgetset" />
+
+    <inherits name="com.velociti.ikarus.widget.IkaruswidgetWidgetset" />
+</module>

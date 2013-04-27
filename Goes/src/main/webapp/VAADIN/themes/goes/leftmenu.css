@@ -1,0 +1,106 @@
+.tab-selected,.selected {
+	background-color: #FF6600;
+	background-image: url("img/grad-light-top2.png");
+	background-position: 0 -1px;
+	color: #042e4b;
+	font-weight: bold;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.sidebar-menu {
+	border: 1px solid #105b8e;
+	/* For WebKit (Safari, Google Chrome etc) */
+	background: -webkit-gradient(linear, left top, right top, from(#325768),
+		to(#b3cdd4), color-stop(1, #b3cdd4) );
+	/* For Mozilla/Gecko (Firefox etc) */
+	background: -moz-linear-gradient(left top, #325768, #b3cdd4 100%);
+	/* For Internet Explorer 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#325768,
+		endColorStr=#b3cdd4, GradientType=1 );
+	/* For Internet Explorer 8 */
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.gradient(startColorstr=#325768, endColorstr=#b3cdd4, GradientType=1)";
+
+	/*background-color: rgba(225,225,225,.6);*/
+}
+
+.sidebar-menu .v-label {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 1 em;
+	letter-spacing: 0.03em;
+	/*text-shadow: 0 1px 0 #bbb;*/
+	text-transform: uppercase;
+	font-weight: bold;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+	padding: .6em .9em;
+}
+
+.sidebar-menu .v-nativebutton {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 1 em;
+	text-align: center;
+	border: 1px solid #FFFFFF;
+	width: 53px;
+	height: 21px;
+	/* padding: 6px; */
+	/* text-shadow: 0 1px 1px #2d4154; */
+	cursor: pointer;
+	margin: 0px 10px 0px 0px;
+}
+
+.melodion .v-label,.melodion .v-nativebutton {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	/* padding: .6em .9em; */
+	white-space: nowrap;
+}
+
+.melodion .v-label:hover,.melodion .v-nativebutton:hover {
+	cursor: pointer;
+	background-color: rgba(166, 166, 166, .5);
+	border-radius: 6px 6px 6px 6px;
+}
+
+.melodion .v-label-spacer:hover {
+	cursor: auto;
+}
+
+.melodion .v-label img {
+	vertical-align: middle;
+}
+
+.melodion .v-tree-node {
+	background: none;
+}
+
+.melodion .v-caption {
+	font-size: .85em;
+	height: 0;
+	overflow: visible;
+	height: 0;
+	clear: both;
+}
+
+.melodion .v-caption-selected {
+	color: #042e4b;
+	font-weight: bold;
+}
+
+.melodion .v-captiontext,.melodion .v-icon {
+	/* padding: .6em .9em 0; */
+}
+
+.melodion .v-icon {
+	float: left;
+}

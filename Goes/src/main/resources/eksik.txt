@@ -1,0 +1,23 @@
+log sorunu
+mesajlaşma
+default view manager
+
+
+************Yapıldı************
+metin eklemek için label
+video resizeable olmalı
+mavi horizontal bar
+image sound upload bitince resize
+logout sorunu
+soru preview mode alanlar read only olmalı
+secenek metin edit mod textbox preview mod label
+left menu yeni buton css
+sürükle bırak tıklama
+soru absolutelayout scrollable olmalı
+işbank logosu değişmeli
+default profile picture
+sınav düzenleme ekranı sağ tablodan sol tabloya aktar kaydet, sol tablodaki değerler siliniyor
+soru silmek istersem eklendiği sınavlar varsa engel olmalı
+öğretmen telefon, mevki alanı
+user numara alanı
+student detail dashboard

@@ -1,0 +1,42 @@
+.mybutton.v-button,
+.mybutton .v-button-wrap {
+	background: transparent url(img/button-big.png);
+	height: 40px;
+	}
+	
+.mybutton.v-button {
+	padding: 0 0 0 20px;
+	border: none;
+	}
+
+.mybutton .v-button:focus {
+	outline: none;
+	background-position: 0 -80px;
+}
+
+.mybutton .v-button-wrap {
+	display: block;
+	background-position: right -40px;
+	color: #222;
+}
+	
+.mybutton .v-button-caption {
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 35px;
+	padding-left: 10px;
+	padding-right: 30px;
+	}
+	
+.mybutton .v-button:focus .v-button-wrap {
+	background-position: right -120px;
+	}
+
+.mybutton .v-button:active {
+	background-position: 0 -160px;
+}
+
+.mybutton .v-button:active .v-button-wrap {
+	background-position: right -200px;
+	color: #fff;
+	}
