@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import tr.edu.gsu.domain.exam.Course;
 import tr.edu.gsu.domain.exam.Exam;
 import tr.edu.gsu.domain.user.Student;
 import tr.edu.gsu.domain.user.StudentExam;
+import tr.edu.gsu.domain.user.Teacher;
 import tr.edu.gsu.i18n.Messages;
 import tr.edu.gsu.service.user.StudentService;
 import tr.edu.gsu.util.AppContext;
@@ -169,10 +171,13 @@ public class StudentDetailView extends BasePage {
 
 	@Override
 	public void refreshContent() {
+		List<String> courseNames = new ArrayList<String>();
+		for (Course course : ((Teacher) session.getUser()).getCourses())
+			courseNames.add(course.getName());
 		participatedExamTable.removeAllItems();
 		Set<StudentExam> studentExamList = student.getParticipatedExams();
 		for (StudentExam studentExam : studentExamList)
-			if (!container.containsId(studentExam.getExam()))
+			if (courseNames.contains(studentExam.getExam().getCourse().getName()) && !container.containsId(studentExam.getExam()))
 				container.addItem(studentExam.getExam());
 		participatedExamTable.select(container.getIdByIndex(0));
 	}

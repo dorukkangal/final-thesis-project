@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import tr.edu.gsu.GoesApplication;
+import tr.edu.gsu.service.exam.CourseService;
 import tr.edu.gsu.service.exam.ExamService;
 import tr.edu.gsu.service.exam.QuestionFieldService;
 import tr.edu.gsu.service.exam.QuestionService;
@@ -45,6 +46,10 @@ public class AppContext implements ApplicationContextAware {
 
 	public static ExamService getExamService() {
 		return getBean("examService", ExamService.class);
+	}
+	
+	public static CourseService getCourseService() {
+		return getBean("courseService", CourseService.class);
 	}
 
 	public static QuestionService getQuestionService() {

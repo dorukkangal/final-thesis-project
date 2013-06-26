@@ -105,6 +105,7 @@ public interface GoesConstants {
 
 	public static final String EXAM_NAME = "exam.name";
 	public static final String EXAM_DESCRIPTION = "exam.description";
+	public static final String EXAM_COURSE = "exam.course";
 	public static final String EXAM_START = "exam.start";
 	public static final String EXAM_END = "exam.end";
 	public static final String EXAM_QUESTIONS_EXIST = "exam.questions.exist";
@@ -141,4 +142,6 @@ public interface GoesConstants {
 	public static final String USER_PHONE = "user.phone";
 	public static final String USER_ACADEMIC_RANK = "user.academic.rank";
 	public static final String USER_CLASS = "user.class";
+	public static final String USER_COURSES = "user.courses";
+	public static final String USER_COURSE_NAME = "user.course";
 }

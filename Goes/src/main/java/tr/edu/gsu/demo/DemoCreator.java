@@ -83,7 +83,7 @@ public class DemoCreator {
 			Date start = cal.getTime();
 			cal.add(Calendar.HOUR, 2);
 			Date end = cal.getTime();
-			Exam exam = new Exam("exam" + i, "exam description", start, end, questions, teacher);
+			Exam exam = new Exam("exam" + i, "exam description", start, end, questions, teacher, null);
 			examService.save(exam);
 		}
 	}

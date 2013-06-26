@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import tr.edu.gsu.domain.exam.Course;
 import tr.edu.gsu.domain.exam.Exam;
 import tr.edu.gsu.domain.exam.Question;
 import tr.edu.gsu.domain.user.Teacher;
@@ -33,11 +35,12 @@ import com.vaadin.ui.AbstractSelect.AcceptItem;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.DateField;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.Table.TableDragMode;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
@@ -51,8 +54,9 @@ public class ExamForm extends BasePage implements ClickListener {
 	private GridLayout formLayout;
 	private TextField nameField;
 	private TextArea descriptionArea;
-	private PopupDateField startDateField;
-	private PopupDateField endDateField;
+	private ComboBox courseCombo;
+	private DateField startDateField;
+	private DateField endDateField;
 	private QuestionTable tableOfExistQuestion;
 	private BeanItemContainer<Question> containerOfExistQuestion;
 	private QuestionTable tableOfAddedQuestion;
@@ -76,7 +80,7 @@ public class ExamForm extends BasePage implements ClickListener {
 	public VerticalLayout buildMainLayout() {
 		mainLayout = new VerticalLayout();
 		mainLayout.setHeight("100%");
-		
+
 		formLayout = buildFormLayout();
 		mainLayout.addComponent(formLayout);
 
@@ -84,15 +88,23 @@ public class ExamForm extends BasePage implements ClickListener {
 	}
 
 	private GridLayout buildFormLayout() {
-		formLayout = new GridLayout(2, 5);
+		formLayout = new GridLayout(3, 5);
 		formLayout.setSpacing(true);
 		formLayout.setMargin(true);
+
+//		HorizontalLayout firstRowLayout = new HorizontalLayout();
+//		firstRowLayout.setSpacing(true);
+//		firstRowLayout.setSizeFull();
+//		formLayout.addComponent(firstRowLayout);
 
 		nameField = buildNameField();
 		formLayout.addComponent(nameField);
 
 		descriptionArea = buildDescriptionArea();
 		formLayout.addComponent(descriptionArea);
+
+		courseCombo = buildCourseCombo();
+		formLayout.addComponent(courseCombo);
 
 		startDateField = buildDateField(Messages.getValue(GoesConstants.EXAM_START));
 		formLayout.addComponent(startDateField);
@@ -101,10 +113,10 @@ public class ExamForm extends BasePage implements ClickListener {
 		formLayout.addComponent(endDateField);
 
 		tableOfExistQuestion = buildTableOfExistQuestion();
-		formLayout.addComponent(tableOfExistQuestion);
+		formLayout.addComponent(tableOfExistQuestion, 0, 2);
 
 		tableOfAddedQuestion = buildTableOfAddedQuestion();
-		formLayout.addComponent(tableOfAddedQuestion);
+		formLayout.addComponent(tableOfAddedQuestion, 1, 2);
 
 		errorLabel = buildErrorLabel();
 		formLayout.addComponent(errorLabel, 1, 3);
@@ -136,13 +148,24 @@ public class ExamForm extends BasePage implements ClickListener {
 
 		return descriptionArea;
 	}
+	
+	private ComboBox buildCourseCombo() {
+		courseCombo = new ComboBox(Messages.getValue(GoesConstants.USER_COURSE_NAME));
+		Set<Course> courseList = ((Teacher) session.getUser()).getCourses();
+		for (Course course : courseList) {
+			courseCombo.addItem(course);
+//			courseCombo.setItemCaption(course, course.getName());
+		}
+		return courseCombo;
+	}
 
-	private PopupDateField buildDateField(String caption) {
-		PopupDateField dateField = new PopupDateField(caption);
+	private DateField buildDateField(String caption) {
+		DateField dateField = new DateField(caption);
 		dateField.setLocale(session.getLocale());
 		dateField.setLenient(true);
 		dateField.setImmediate(true);
 		dateField.setRequired(true);
+		dateField.setResolution(DateField.RESOLUTION_MIN);
 
 		return dateField;
 	}
@@ -252,6 +275,7 @@ public class ExamForm extends BasePage implements ClickListener {
 	public void refreshContent() {
 		nameField.setValue(exam.getName());
 		descriptionArea.setValue(exam.getDescription());
+		courseCombo.setValue(exam.getCourse());
 		startDateField.setValue(exam.getStart());
 		endDateField.setValue(exam.getEnd());
 
@@ -317,6 +341,14 @@ public class ExamForm extends BasePage implements ClickListener {
 			exam.setDescription(description);
 		else {
 			errorLabel.setValue(buildErrorMessage(Messages.getValue(GoesConstants.EXAM_DESCRIPTION)));
+			return false;
+		}
+
+		Course course = (Course) courseCombo.getValue();
+		if (course != null)
+			exam.setCourse(course);
+		else {
+			errorLabel.setValue(buildErrorMessage(Messages.getValue(GoesConstants.EXAM_COURSE)));
 			return false;
 		}
 

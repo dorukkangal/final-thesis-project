@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -36,7 +37,10 @@ public class Exam extends BaseEntity implements Comparable<Exam> {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Teacher creator;
 
-	public Exam(String name, String description, Date start, Date end, Set<Question> questions, Teacher creator) {
+	@OneToOne(fetch = FetchType.LAZY)
+	private Course course;
+
+	public Exam(String name, String description, Date start, Date end, Set<Question> questions, Teacher creator, Course course) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -44,6 +48,7 @@ public class Exam extends BaseEntity implements Comparable<Exam> {
 		this.end = end;
 		this.questions = questions;
 		this.creator = creator;
+		this.course = course;
 	}
 
 	public Exam() {
@@ -101,6 +106,14 @@ public class Exam extends BaseEntity implements Comparable<Exam> {
 	@Override
 	public int compareTo(Exam o) {
 		return start.compareTo(o.getStart());
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 	@Override

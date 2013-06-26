@@ -22,6 +22,7 @@
 	<bean id="examService" class="tr.edu.gsu.service.exam.ExamServiceImpl" />
 	<bean id="questionService" class="tr.edu.gsu.service.exam.QuestionServiceImpl" />
 	<bean id="questionFieldService" class="tr.edu.gsu.service.exam.QuestionFieldServiceImpl" />
+	<bean id="courseService" class="tr.edu.gsu.service.exam.CourseServiceImpl" />
 	<bean id="teacherService" class="tr.edu.gsu.service.user.TeacherServiceImpl" />
 	<bean id="studentService" class="tr.edu.gsu.service.user.StudentServiceImpl" />
 	<bean id="mesasageService" class="tr.edu.gsu.service.message.MessageServiceImpl" />

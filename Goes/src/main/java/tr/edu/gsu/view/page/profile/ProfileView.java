@@ -1,5 +1,8 @@
 package tr.edu.gsu.view.page.profile;
 
+import java.util.Set;
+
+import tr.edu.gsu.domain.exam.Course;
 import tr.edu.gsu.domain.user.Teacher;
 import tr.edu.gsu.i18n.Messages;
 import tr.edu.gsu.util.ChartUtil;
@@ -15,6 +18,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Embedded;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
@@ -28,6 +32,7 @@ public class ProfileView extends BasePage {
 	private TextField departmentField;
 	private TextField phoneField;
 	private TextField academicRankField;
+	private Table courseTable;
 	private InvientCharts examChart;
 	private InvientCharts questionChart;
 
@@ -78,7 +83,7 @@ public class ProfileView extends BasePage {
 		profileLayout.addComponent(pictureContainer, 0, 0, 0, 1);
 
 		fullName = new BlueBar(teacher.getFullName());
-		profileLayout.addComponent(fullName, 1, 0, 2, 0);
+		profileLayout.addComponent(fullName, 1, 0, 3, 0);
 		profileLayout.setComponentAlignment(fullName, Alignment.BOTTOM_CENTER);
 
 		emailField = buildField(Messages.getValue(GoesConstants.USER_EMAIL), teacher.getEmail());
@@ -92,6 +97,9 @@ public class ProfileView extends BasePage {
 
 		academicRankField = buildField(Messages.getValue(GoesConstants.USER_ACADEMIC_RANK), teacher.getAcademicRank());
 		profileLayout.addComponent(academicRankField, 2, 2);
+
+		courseTable = buildCourseTable(teacher.getCourses());
+		profileLayout.addComponent(courseTable, 3, 1, 3, 2);
 
 		profileLayout.addComponent(new BlueBar(Messages.getValue(GoesConstants.DASHBOARD)), 0, 3, 3, 3);
 
@@ -116,6 +124,16 @@ public class ProfileView extends BasePage {
 		field.setReadOnly(true);
 
 		return field;
+	}
+
+	private Table buildCourseTable(Set<Course> courses) {
+		courseTable = new Table(Messages.getValue(GoesConstants.USER_COURSES));
+		courseTable.addContainerProperty("name", String.class, "");
+		courseTable.setColumnHeader("name", Messages.getValue(GoesConstants.USER_COURSE_NAME));
+		courseTable.setPageLength( courses.size() );
+		for (Course course : courses)
+			courseTable.addItem(new Object[] { course.getName() }, course.getName());
+		return courseTable;
 	}
 
 	@Override

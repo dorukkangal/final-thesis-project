@@ -223,9 +223,9 @@ public class ExamView extends BasePage implements ClickListener {
 			int diffInDays = getDifferenceBetweenDates(exam.getStart(), new Date());
 			if (diffInDays < 0)
 				return "color1"; // yesil
-			else if (diffInDays < 7)
+			else if (diffInDays < 2)
 				return "color3"; // kırmızı
-			else if (diffInDays < 14)
+			else if (diffInDays < 4)
 				return "color4"; // turuncu
 			else
 				return "color2"; // mavi

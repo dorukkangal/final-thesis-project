@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import tr.edu.gsu.domain.exam.Course;
 import tr.edu.gsu.domain.exam.Exam;
 import tr.edu.gsu.domain.exam.Question;
 
@@ -23,6 +25,9 @@ public class Teacher extends GoesUser {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "creator", cascade = CascadeType.ALL)
 	private Set<Question> questions = new HashSet<Question>();
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	private Set<Course> courses = new HashSet<Course>();
 
 	public Teacher(String email, String password, String firstName, String lastName, byte[] picture, Department department) {
 		super(email, password, firstName, lastName, picture, department);
@@ -46,5 +51,13 @@ public class Teacher extends GoesUser {
 
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
 	}
 }
